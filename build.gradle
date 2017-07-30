@@ -1,0 +1,14 @@
+group 'haoliang'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'base'
+
+sourceCompatibility = 1.5
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
