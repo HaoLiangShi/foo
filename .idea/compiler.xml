@@ -1,7 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel>
+    <bytecodeTargetLevel target="1.8">
+      <module name="foo-api_main" target="1.8" />
+      <module name="foo-api_test" target="1.8" />
+      <module name="foo-common_main" target="1.8" />
+      <module name="foo-common_test" target="1.8" />
+      <module name="foo-core_main" target="1.8" />
+      <module name="foo-core_test" target="1.8" />
+      <module name="foo-repository_main" target="1.8" />
+      <module name="foo-repository_test" target="1.8" />
+      <module name="foo-task_main" target="1.8" />
+      <module name="foo-task_test" target="1.8" />
       <module name="foo_main" target="1.5" />
       <module name="foo_test" target="1.5" />
     </bytecodeTargetLevel>

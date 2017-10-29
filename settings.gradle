@@ -1,2 +1,6 @@
 rootProject.name = 'foo'
-
+include 'foo-api'
+include 'foo-common'
+include 'foo-core'
+include 'foo-repository'
+include 'foo-task'
