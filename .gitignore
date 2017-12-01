@@ -5,7 +5,7 @@ build
 .DS_Store
 *.jar
 logs/
-.gradle
+.gradle/
 .gradletasknamecache
 classes/
 /upload
