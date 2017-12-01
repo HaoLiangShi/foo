@@ -6,3 +6,4 @@
    @RunWith(SpringRunner.class)
    @SpringBootTest
 4: application context not configured
+5: settings.gradle config project modules

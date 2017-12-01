@@ -1,5 +1,5 @@
 *.iml
-.idea
+.idea/
 target
 build
 .DS_Store
@@ -11,3 +11,5 @@ classes/
 /upload
 out/production
 gradle/
+gradlew
+gradlew.bat
