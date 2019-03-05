@@ -20,10 +20,10 @@ import javax.sql.DataSource;
 /**
  * Created by xiaoliangzi on 2017/10/29.
  */
-@ComponentScan(value = {"com.haoliang.foo.repository"})
+@ComponentScan(value = {"com.haoliang.foo.repository.one.repo"})
 @Import(value = {FooCommonApplicationContext.class})
 @ImportResource
-@MapperScan(basePackages = "com.haoliang.foo.repository",
+@MapperScan(basePackages = "com.haoliang.foo.repository.one.mybatis.mappers",
         sqlSessionTemplateRef  = "mybatisSqlSessionTemplateOne")
 @Configuration
 public class FooRepositoryApplicationContext {

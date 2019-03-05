@@ -1,8 +1,8 @@
-package com.haoliang.foo.repository.one.impl;
+package com.haoliang.foo.repository.one.repo.impl;
 
 import com.haoliang.foo.domain.one.ABase;
 import com.haoliang.foo.domain.one.ABaseExample;
-import com.haoliang.foo.repository.one.ABaseRepository;
+import com.haoliang.foo.repository.one.repo.ABaseRepository;
 import com.haoliang.foo.repository.one.mybatis.mappers.ABaseMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

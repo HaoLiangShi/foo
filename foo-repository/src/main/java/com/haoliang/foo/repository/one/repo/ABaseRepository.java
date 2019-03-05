@@ -1,4 +1,4 @@
-package com.haoliang.foo.repository.one;
+package com.haoliang.foo.repository.one.repo;
 
 import com.haoliang.foo.domain.one.ABase;
 

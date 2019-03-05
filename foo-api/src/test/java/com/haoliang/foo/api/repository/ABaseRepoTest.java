@@ -2,7 +2,7 @@ package com.haoliang.foo.api.repository;
 
 import com.haoliang.foo.api.BaseApiTest;
 import com.haoliang.foo.domain.one.ABase;
-import com.haoliang.foo.repository.one.ABaseRepository;
+import com.haoliang.foo.repository.one.repo.ABaseRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
