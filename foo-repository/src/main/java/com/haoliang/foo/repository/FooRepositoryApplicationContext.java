@@ -20,9 +20,11 @@ import javax.sql.DataSource;
 /**
  * Created by xiaoliangzi on 2017/10/29.
  */
-@ComponentScan(value = {"com.haoliang.foo.repository.one.repo"})
+@ComponentScan(value = {"com.haoliang.foo.repository"})
 @Import(value = {FooCommonApplicationContext.class})
 @ImportResource
+// todo fix me basePackages如果路径不足够详细就会抛NoUniqueBeanDefinitionException
+// eg: com.haoliang.foo.repository.one就会报错
 @MapperScan(basePackages = "com.haoliang.foo.repository.one.mybatis.mappers",
         sqlSessionTemplateRef  = "mybatisSqlSessionTemplateOne")
 @Configuration

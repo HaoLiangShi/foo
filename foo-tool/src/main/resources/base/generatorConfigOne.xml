@@ -85,6 +85,7 @@
                enableCountByExample="true" enableUpdateByExample="true"
                enableDeleteByExample="true" enableSelectByExample="true"
                selectByExampleQueryId="true">
+            <!--这一行配置保证自增id会回写-->
             <generatedKey column="id" sqlStatement="JDBC" identity="true" />
             <columnOverride column="is_deleted" javaType="Integer" />
         </table>
