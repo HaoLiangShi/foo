@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <context id="MySQLTables" targetRuntime="MyBatis3" defaultModelType="flat">
+
+        <property name="autoDelimitKeywords" value="true"/>
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+        <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"/>
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+
+        <plugin type="com.haoliang.foo.tool.mybatis.OverIsMergeablePlugin" />
+
+        <!--&lt;!&ndash; https://gitee.com/zenith/mybatis-generator-plugin &ndash;&gt;-->
+        <!--&lt;!&ndash; 查询单条数据插件 &ndash;&gt;-->
+        <!--<plugin type="com.itfsw.mybatis.generator.plugins.SelectOneByExamplePlugin"/>-->
+        <!--&lt;!&ndash; MySQL分页插件 &ndash;&gt;-->
+        <!--<plugin type="com.itfsw.mybatis.generator.plugins.LimitPlugin"/>-->
+        <!--&lt;!&ndash; 数据Model链式构建插件 &ndash;&gt;-->
+        <!--<plugin type="com.itfsw.mybatis.generator.plugins.ModelBuilderPlugin"/>-->
+        <!--&lt;!&ndash; 存在即更新插件 &ndash;&gt;-->
+        <!--<plugin type="com.itfsw.mybatis.generator.plugins.UpsertPlugin"/>-->
+        <!--&lt;!&ndash; 批量插入插件 &ndash;&gt;-->
+        <!--<plugin type="com.itfsw.mybatis.generator.plugins.BatchInsertPlugin">-->
+            <!--&lt;!&ndash;-->
+            <!--开启后可以实现官方插件根据属性是否为空决定是否插入该字段功能-->
+            <!--！需开启allowMultiQueries=true多条sql提交操作，所以不建议使用！插件默认不开启-->
+            <!--&ndash;&gt;-->
+            <!--<property name="allowMultiQueries" value="false"/>-->
+        <!--</plugin>-->
+
+        <!--&lt;!&ndash; 数据Model属性对应Column获取插件 &ndash;&gt;-->
+        <!--<plugin type="com.itfsw.mybatis.generator.plugins.ModelColumnPlugin"/>-->
+
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+
+        <!--这里driverClass也与mysql版本有关-->
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/mysql?zeroDateTimeBehavior=CONVERT_TO_NULL&amp;useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=GMT"
+                        userId="root"
+                        password="pass">
+        </jdbcConnection>
+
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!--
+            model位置配置
+        -->
+        <javaModelGenerator targetPackage="com.haoliang.foo.domain.one"
+                            targetProject="foo-common/src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!--
+            xml mapper位置配置
+        -->
+        <sqlMapGenerator targetPackage="base.com.haoliang.foo.repository.one.mybatis.mappers"
+                         targetProject="foo-repository/src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <!--
+            java mapper对象位置配置
+        -->
+        <javaClientGenerator type="XMLMAPPER"
+                             targetPackage="com.haoliang.foo.repository.one.mybatis.mappers"
+                             targetProject="foo-repository/src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!--
+            model属性等信息配置
+        -->
+        <table tableName="a_base"
+               enableCountByExample="true" enableUpdateByExample="true"
+               enableDeleteByExample="true" enableSelectByExample="true"
+               selectByExampleQueryId="true">
+            <generatedKey column="id" sqlStatement="JDBC" identity="true" />
+            <columnOverride column="is_deleted" javaType="Integer" />
+        </table>
+
+    </context>
+
+</generatorConfiguration>

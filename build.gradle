@@ -1,17 +1,18 @@
 apply plugin: 'base'
-group 'com.haoliang.foo'
+group 'com.haoliang'
 version '1.0'
 
 ext {
     junitVersion = '4.11'
     springVersion = '4.2.4.RELEASE'
     springBootVersion = '1.4.1.RELEASE'
-    mysqlConnectorVersion = '5.1.37'
+    //需要与mysql版本一致，负责会出现获取连接失败的问题
+    mysqlConnectorVersion = '8.0.11' //
     mybatisVersion = '3.3.0'
     mybatisSpringVersion = '1.2.3'
     jacksonVersion = '2.6.4'
-    aliyunOSSVersion = '2.1.0'
     lombokVersion = '1.16.12'
+    tomcatJdbcVersion = '8.5.16'
 
     env = System.getProperty("env") == null ? "development" : System.getProperty("env")
 }
@@ -19,15 +20,9 @@ ext {
 buildscript {
     ext {
         springBootVersion = '1.4.1.RELEASE'
-        nexusUrl = 'http://maven-pdd.corp.yiran.com:8081'
     }
 
     repositories {
-        maven {
-            name "company"
-            url "$nexusUrl/repository/maven-public/"
-
-        }
         jcenter()
         mavenLocal()
     }
@@ -40,6 +35,7 @@ buildscript {
 allprojects {
 
 }
+
 subprojects {
     apply plugin: 'idea'
     apply plugin: 'java'
@@ -52,11 +48,6 @@ subprojects {
     }
 
     repositories {
-        maven {
-            name "company"
-            url "$nexusUrl/repository/maven-public/"
-
-        }
         jcenter()
         mavenLocal()
     }
@@ -116,6 +107,7 @@ project(":foo-repository") {
     dependencies {
         compile project(":foo-common")
 
+        compile "org.apache.tomcat:tomcat-jdbc:$tomcatJdbcVersion"
         compile "org.mybatis:mybatis:$mybatisVersion"
         compile "org.mybatis:mybatis-spring:$mybatisSpringVersion"
     }
@@ -135,29 +127,17 @@ project(":foo-task") {
     }
 }
 
-configurations.all {
-    // check for updates every build
-    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
-}
+project(":foo-tool") {
+    dependencies {
+        compile("mysql:mysql-connector-java:$mysqlConnectorVersion") {
+            force = true
+        }
+        compile "org.mybatis:mybatis:$mybatisVersion"
+        compile 'org.mybatis.generator:mybatis-generator-core:1.3.6'
+        compile "org.mybatis:mybatis-spring:$mybatisSpringVersion"
 
-// mybatis
-configurations {
-    mybatisGenerator
-}
-repositories {
-    mavenCentral()
-}
-dependencies {
-    mybatisGenerator 'org.mybatis.generator:mybatis-generator-core:1.3.2'
-    mybatisGenerator 'mysql:mysql-connector-java:5.1.36'
-    mybatisGenerator 'tk.mybatis:mapper:3.3.2'
-}
+        compile "com.itfsw:mybatis-generator-plugin:1.2.9"
 
-task mybatisGenerate << {
-    ant.taskdef(
-            name: 'mbgenerator',
-            classname: 'org.mybatis.generator.ant.GeneratorAntTask',
-            classpath: configurations.mybatisGenerator.asPath
-    )
-    ant.mbgenerator(overwrite: true, configfile: 'generatorConfig.xml', verbose: true) {}
+        testCompile "org.springframework.boot:spring-boot-starter-test:$springBootVersion"
+    }
 }
